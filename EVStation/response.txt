@@ -1,0 +1,33 @@
+## Test Case 1: ```calculateChargingCost(50, "member", true, true) ```
+Para el cálculo del costo de carga debemos tener en cuenta:
+* Los kWh consumidos son 50.
+* La tarifa base es 0.15 porque el usuario es un miembro.
+* El factor horario es 5.0 porque la carga ocurre en horas pico.
+* El descuento por membresía es -3.0 porque el usuario es un miembro premium.
+* El costo total es (50 × 0.15) + 5 - 3 = 9.50.
+* **Costo total = 9.50**.
+
+## Test Case 2: ```calculateChargingCost(30, "standard", false, false)```
+Para el cálculo del costo de carga debemos tener en cuenta:
+* Los kWh consumidos son 30.
+* La tarifa base es 0.20 porque el usuario es estándar.
+* El factor horario es 0.0 porque la carga no ocurre en horas pico.
+* El descuento por membresía es 0.0 porque el usuario no es premium.
+* El costo total es (30 × 0.20) + 0 - 0 = 6.00.
+* **Costo total = 6.00**.
+
+## Test Case 3: ```calculateChargingCost(0, "member", true, false) ```
+* **Error:** Los kWh consumidos deben estar entre 1 y 100.
+* Este error se produjo porque los kWh ingresados son 0, lo cual está por debajo del límite mínimo de 1.
+
+## Test Case 4: ```calculateChargingCost(120, "standard", false, false) ```
+* **Error:** Los kWh consumidos deben estar entre 1 y 100.
+* Este error se produjo porque los kWh ingresados son 120, lo cual supera el límite máximo de 100.
+
+## Test Case 5: ```calculateChargingCost(20, "VIP", true, true)```
+* **Error:** Tipo de usuario inválido. Debe ser 'standard' o 'member'.
+* Este error se ha producido porque el tipo de usuario ingresado no es válido.
+
+## Conclusión:
+* Los resultados de los casos de prueba muestran que el sistema maneja correctamente tanto las entradas válidas como las inválidas, lo que garantiza un manejo sólido de errores. 
+* En caso de una entrada no válida, se lanza una excepción si los kWh están fuera del rango permitido o si el tipo de usuario no es válido.

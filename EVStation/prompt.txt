@@ -1,0 +1,62 @@
+Recientemente he conseguido un trabajo para gestionar una estación de carga de vehículos eléctricos. Mi sistema debe calcular el costo total de la carga utilizando la siguiente fórmula:
+
+$ costo_total = (kWh_consumidos * tarifa_base) + factor_horario + descuento_membresía $
+
+Las reglas de cálculo son las siguientes:
+* La tarifa base es de $0.20 por kWh para usuarios estándar y de $0.15 por kWh para miembros.
+* El factor horario agrega un cargo extra de $5 si la carga ocurre en horas pico (4 PM - 9 PM).
+* El descuento de membresía es de -$3 para miembros premium, pero $0 para usuarios estándar.
+* Los kWh consumidos deben estar entre 1 y 100. Si el valor ingresado está fuera de este rango, el sistema debe generar un error.
+* Si se ingresa un tipo de usuario o un horario de carga inválido, el sistema debe lanzar un error y detener el procesamiento de esa solicitud.
+
+A continuación, se presenta un ejemplo de código fuente en Java que calcula el costo de carga de un vehículo eléctrico:
+
+```Java
+
+public class VE { 
+    public static double calculateChargingCost(double kWhUsed, String userType, boolean isPeakHours, boolean isPremiumMember) {
+        if (kWhUsed < 1 || kWhUsed > 100) {
+            throw new IllegalArgumentException("Error: Los kWh consumidos deben estar entre 1 y 100.");
+        }
+
+        if (!userType.equalsIgnoreCase("standard") && !userType.equalsIgnoreCase("member")) {
+            throw new IllegalArgumentException("Error: Tipo de usuario inválido. Debe ser 'standard' o 'member'.");
+        }
+
+        double baseRate = userType.equalsIgnoreCase("member") ? 0.15 : 0.20;
+        double timeFactor = isPeakHours ? 5.0 : 0.0;
+        double membershipDiscount = isPremiumMember ? -3.0 : 0.0;
+
+        return (kWhUsed * baseRate) + timeFactor + membershipDiscount;
+    }
+
+    public static void main(String[] args) {
+} 
+}
+
+```
+
+Quiero validar la exactitud de la función probándola con los siguientes casos de prueba.
+
+Casos de prueba:
+
+```Java
+calculateChargingCost(50, "member", true, true)
+```
+
+```Java
+calculateChargingCost(30, "standard", false, false)
+```
+
+```Java
+calculateChargingCost(0, "member", true, false)
+```
+
+```Java
+calculateChargingCost(120, "standard", false, false)
+```
+
+```Java
+calculateChargingCost(20, "VIP", true, true)
+```
+

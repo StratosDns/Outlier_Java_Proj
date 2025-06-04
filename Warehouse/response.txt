@@ -1,0 +1,34 @@
+## Caso de prueba 1: ```calculateShippingWeight(10.0,true,"standard","fast") ```
+Para el cálculo del peso del envío debemos tener en cuenta:
+* El peso del paquete que es de 10 kg .
+* La tarifa de manejo es 2.0 porque es la opción predeterminada para el estándar.
+* El factor de prioridad es 1.2 porque su velocidad de entrega es rápida. El factor de velocidad de entrega anula el factor de alta prioridad.
+* El peso total del envío es (10.0+2.0)*1.2 = 14.4 
+* Peso_total_de_envío = 14.4
+
+
+## Caso de prueba 2: ```calculateShippingWeight(5.5,false,"fragile","standard")```
+Para el cálculo del peso del envío debemos tener en cuenta:
+* El peso del paquete que es de 5.5 kg.
+* La tarifa de manejo es 5.0 porque es frágil.
+* El factor de prioridad es 1.0 porque no es de alta prioridad y su velocidad de entrega es estándar.
+* El peso total del envío es (5.5+5.0)*1.0 = 10.5 
+* Peso_total_de_envío = 10.5
+
+
+## Caso de prueba 3: ```calculateShippingWeight(0.0,true,"bulky","fast") ```
+* Error: El peso del paquete debe estar entre 0.1 kg y 1000 kg.
+* Este error se produjo porque el peso del paquete es de 0 kg, que está por debajo del límite inferior de 0,1 kg.
+
+
+## Caso de prueba 4: ```calculateShippingWeight(2000.0,false,"fragile","standard") ```
+* Error: El peso del paquete debe estar entre 0.1 kg y 1000 kg.
+* Este error se produjo porque el peso del paquete es de 2000 kg, que supera el límite superior de 1000 kg.
+
+
+## Caso de prueba 5: ```calculateShippingWeight(1.0,true,"unknown","fast")```
+* Error: Tipo de paquete inválido. Debe ser 'standard', 'fragile' o 'bulky'.
+* Este error se ha producido porque el tipo de paquete no es válido.
+
+## Conclusión:
+* Los resultados de los casos de prueba muestran que el sistema maneja correctamente tanto las entradas válidas como las inválidas, lo que garantiza un manejo sólido de errores. En caso de una entrada no válida, lanza una excepción si el peso está fuera del rango o si el tipo de paquete no es válido.

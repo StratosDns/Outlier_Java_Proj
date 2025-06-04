@@ -1,0 +1,20 @@
+Recientemente conseguí un trabajo en la gestión de un sistema de almacén, y mi responsabilidad es registrar el peso de los paquetes entrantes. Mi sistema debe calcular el peso de envío ajustado utilizando la fórmula:
+peso_ajustado = (peso_paquete + tarifa_manejo) * factor_prioridad * factor_velocidad_entrega.
+
+La tarifa de manejo es fija en 2 kg para paquetes estándar. Sin embargo, esta tarifa aumenta a 5 kg para paquetes frágiles y a 7 kg para paquetes voluminosos. El factor de prioridad es 1.1 para envíos de alta prioridad y 1.0 para envíos estándar.
+
+El factor de velocidad de entrega modifica el factor de prioridad. Una entrega rápida aumenta el factor de prioridad a 1.2, mientras que una entrega estándar lo mantiene en 1.0.
+
+El peso del paquete debe ser un valor positivo entre 0.1 kg y 1000 kg. Si el peso está fuera de este rango o es negativo, el sistema debe generar un error. Además, el número máximo de paquetes procesados por día es 500. Si se procesan más de 500 paquetes, el sistema debe registrar una advertencia.
+
+Si se proporciona un tipo de paquete o peso inválido, el sistema debe lanzar una excepción y detener el procesamiento de ese paquete.
+
+El siguiente es un ejemplo de código Java que realiza el cálculo del peso de envío:
+
+//code//
+
+Quiero validar la exactitud de la función probándola con los siguientes casos de prueba.
+
+Casos de prueba:
+
+//code//
